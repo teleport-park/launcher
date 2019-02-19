@@ -1,2 +1,7 @@
 Test/LauncherForms/obj
 Test/LauncherForms/bin
+Test/LauncherForms/.vs
+Test/LauncherPipes/obj
+Test/LauncherForms/LauncherPipes/obj
+Test/LauncherForms/LauncherPipes/bin
+Test/.vs

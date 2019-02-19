@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LauncherForms {
+namespace LauncherUI {
     static class Program {
         /// <summary>
         /// Главная точка входа для приложения.
