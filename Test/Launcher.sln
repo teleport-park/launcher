@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LauncherPipes", "LauncherFo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipesServerConsole2", "PipesServerConsole2\PipesServerConsole2.csproj", "{95E5318D-B4EB-498B-908A-72B2CB91402E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LauncherService", "LauncherService\LauncherService.csproj", "{FC6E896B-B85B-4E1C-8D76-686ABE8C6707}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{95E5318D-B4EB-498B-908A-72B2CB91402E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95E5318D-B4EB-498B-908A-72B2CB91402E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95E5318D-B4EB-498B-908A-72B2CB91402E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC6E896B-B85B-4E1C-8D76-686ABE8C6707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC6E896B-B85B-4E1C-8D76-686ABE8C6707}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC6E896B-B85B-4E1C-8D76-686ABE8C6707}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC6E896B-B85B-4E1C-8D76-686ABE8C6707}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
