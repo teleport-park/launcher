@@ -1,20 +1,35 @@
-﻿using LauncherPipes;
+﻿using NamedPipeWrapper;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
+using Message = LauncherPipes.Protocol.Message;
 
 namespace LauncherUI {
     public partial class MainForm : Form {
         private bool _spaceKeyPressed;
+        private bool _clientStarted;
+        private SynchronizationContext _context;
+        private NamedPipeClient<Message> _client;
         public MainForm() {
             InitializeComponent();
             _spaceKeyPressed = false;
+            _clientStarted = false;
+            _client = new NamedPipeClient<Message>("localhost");
+            _client.ServerMessage += delegate (NamedPipeConnection<Message, Message> conn, Message message) {
+                _context.Post((obj) => {
+                    HandleMessage(message);
+                }, null);
+            };
+
+        }
+
+        private void HandleMessage(Message message) {
+            if (!string.IsNullOrEmpty(message?.Text)) {
+                if (message.Text.Contains("Welcome")) {
+                    FormBorderStyle = FormBorderStyle.None;
+                    WindowState = FormWindowState.Maximized;
+                }
+            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
@@ -24,19 +39,19 @@ namespace LauncherUI {
         private void MainForm_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e) {
             // pipes server test
             if (e.Shift) {
-                using(var pipesServer = new Server()) {
-                    MessageBox.Show("Starting pipes server");
-                    Task.Run(async () => {
-                        pipesServer.Prepare("localhost");
-                        await pipesServer.Start();
-                    });
-                    MessageBox.Show("Pipes server has been started");
+                if (!_clientStarted) {
+                    _client.Start();
+                    _clientStarted = true;
+                    return;
                 }
-                return;
+                MessageBox.Show("Client is already running");
             }
             // close app on space
             if (e.KeyCode == Keys.Space) {
                 if (MessageBox.Show("Close application?", "Launcher message", MessageBoxButtons.OKCancel) == DialogResult.OK) {
+                    if (_clientStarted) {
+                        _client.Stop();
+                    }
                     CloseForm();   
                 }
             }
@@ -45,6 +60,10 @@ namespace LauncherUI {
         private void CloseForm() {
             _spaceKeyPressed = true;
             Close();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e) {
+            _context = SynchronizationContext.Current;
         }
     }
 }

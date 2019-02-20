@@ -5,3 +5,9 @@ Test/LauncherPipes/obj
 Test/LauncherForms/LauncherPipes/obj
 Test/LauncherForms/LauncherPipes/bin
 Test/.vs
+Test/PipesClientConsole/bin
+Test/PipesClientConsole/obj
+Test/PipesServerConsole/bin
+Test/PipesServerConsole/obj
+Test/PipesServerConsole2/bin
+Test/PipesServerConsole2/obj

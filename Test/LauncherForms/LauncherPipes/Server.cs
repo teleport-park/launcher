@@ -60,10 +60,8 @@ namespace LauncherPipes {
             }
         }
         public void Dispose() {
-            // Не изменяйте этот код. Разместите код очистки выше, в методе Dispose(bool disposing).
             Dispose(true);
-            // TODO: раскомментировать следующую строку, если метод завершения переопределен выше.
-            // GC.SuppressFinalize(this);
+            GC.SuppressFinalize(this);
         }
 
         
